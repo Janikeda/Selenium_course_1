@@ -1,6 +1,7 @@
 package rus.test.selenium;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -10,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -29,10 +31,11 @@ public class Login_Test {
         //driver = new FirefoxDriver();
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        //driver.manage().window().maximize();
         wait = new WebDriverWait(driver, 10);
          }
-    public boolean areElementsPresent(By locator) {
+    public boolean areElementsPresent(WebDriver driver, By locator) {
         return driver.findElements(locator).size() > 0;
     }
     @Test
@@ -42,17 +45,19 @@ public class Login_Test {
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
 
-        List<WebElement> list = driver.findElements(By.cssSelector("ul#box-apps-menu li#app-"));
-        //List<WebElement> listSpan = driver.findElements(By.cssSelector("ul#box-apps-menu li#app- span.name"));
+        List<WebElement> listLi = driver.findElements(By.cssSelector("li#app-"));
 
-        for(int i = 0; i < list.size(); ++i) {
-            list = driver.findElements(By.cssSelector("ul#box-apps-menu li#app-"));
-            list.get(i).click();
+        for(int i = 1; i <= listLi.size(); i++) {
+             driver.findElement(By.cssSelector("li#app-:nth-child("+ i +") a")).click();;
+            Assert.assertTrue(areElementsPresent(driver, By.cssSelector("h1")));
 
-            List<WebElement> listSpan = driver.findElements(By.cssSelector("ul#box-apps-menu li#app- span.name"));
-            for(int m = 0; m < listSpan.size(); ++m)
-            listSpan = driver.findElements(By.cssSelector("ul#box-apps-menu li#app- span.name"));
-            listSpan.get(m).click();
+            List<WebElement> listA = driver.findElements(By.cssSelector("li[id^=doc"));
+            if (listA.size() > 0) {
+                for(int j = 1; j <= listA.size(); j++) {
+                    driver.findElement(By.cssSelector("li[id^=doc]:nth-child("+ j +") a")).click();;
+                    Assert.assertTrue(areElementsPresent(driver, By.cssSelector("h1")));
+                }
+            }
         };
     }
 
