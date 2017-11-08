@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class Test_Sort_Countries {
+public class Test_09_Sort_Countries {
 
     private WebDriver driver;
     private WebDriverWait wait;
