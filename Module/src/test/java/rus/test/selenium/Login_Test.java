@@ -27,7 +27,6 @@ public class Login_Test {
     @Before
     public void start() {
         //driver = new InternetExplorerDriver();
-        // System.setProperty("webdriver.gecko.driver", driverPath+"geckodriver.exe");
         //driver = new FirefoxDriver();
 
         driver = new ChromeDriver();
@@ -58,7 +57,7 @@ public class Login_Test {
                     Assert.assertTrue(areElementsPresent(driver, By.cssSelector("h1")));
                 }
             }
-        };
+        }
     }
 
     @After
