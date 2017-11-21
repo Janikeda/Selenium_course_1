@@ -19,8 +19,6 @@ public class Test_13 {
         private WebDriver driver;
         private WebDriverWait wait;
 
-
-
         @Before
         public void start() {
             driver = new ChromeDriver();
