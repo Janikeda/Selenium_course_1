@@ -34,11 +34,11 @@ public class Test_17 {
 
         driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
 
-        List<WebElement> products = driver.findElements(By.cssSelector(".dataTable td:nth-child(3) a"));
+        List<WebElement> products = driver.findElements(By.cssSelector(".dataTable .row td:nth-child(3) a"));
         List<String> product_links = new ArrayList<>();
         for (WebElement element : products)
         {
-            if (!element.getText().equals("Subcategory"))
+                if (!element.getText().equals("Subcategory"))
                 product_links.add(element.getAttribute("textContent"));
         }
         for (String g : product_links)
@@ -48,7 +48,7 @@ public class Test_17 {
             driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
         }
     }
-
+    
     @After
     public void stop() {
         driver.quit();
