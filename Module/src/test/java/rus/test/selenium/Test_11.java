@@ -37,8 +37,9 @@ public class Test_11 {
             driver.findElement(By.cssSelector("#create-account tr:nth-child(3) input")).sendKeys("Chicago, Broadway");
             driver.findElement(By.cssSelector("#create-account tr:nth-child(4) input")).sendKeys("60601");
             driver.findElement(By.cssSelector("#create-account tr:nth-child(4) td:nth-child(2) input")).sendKeys("Albukerka");
-            driver.findElement(By.cssSelector("[name=country_code]")).sendKeys("United States");
-            Select select = new Select(driver.findElement(By.cssSelector("#create-account td:nth-child(2) select")));
+            Select select = new Select(driver.findElement(By.cssSelector("#create-account td:nth-child(1) select")));
+            select.selectByValue("US");
+            select = new Select(driver.findElement(By.cssSelector("#create-account td:nth-child(2) select")));
             select.selectByValue("IL");
 
             driver.findElement(By.cssSelector("#create-account tr:nth-child(6) td:nth-child(1) input")).sendKeys(email);
