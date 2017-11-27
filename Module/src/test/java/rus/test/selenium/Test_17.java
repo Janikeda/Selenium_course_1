@@ -48,7 +48,7 @@ public class Test_17 {
             driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
         }
     }
-    
+
     @After
     public void stop() {
         driver.quit();
