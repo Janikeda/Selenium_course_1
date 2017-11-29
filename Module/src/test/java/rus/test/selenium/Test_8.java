@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class Test_Checking_Stickers {
+public class Test_8 {
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -24,25 +24,26 @@ public class Test_Checking_Stickers {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
     }
-    public boolean areElementsPresent(WebDriver driver, By locator) {
-        return driver.findElements(locator).size() > 0;
-    }
+
      @Test
      public void myFirstTest() {
-         driver.navigate().to("http://localhost/litecart/en/");
+         driver.navigate().to("http://localhost/litecart/");
 
          List<WebElement> listProducts = driver.findElements(By.cssSelector(".product"));
 
          for (int i = 0; i < listProducts.size(); i++) {
              WebElement product = listProducts.get(i);
-             try {
-                 Assert.assertTrue(product.findElements(By.cssSelector(".sticker")).size() != 0);
+             if (product.findElements(By.cssSelector(".sticker")).size() == 1) {
+                 System.out.println("Товар №"+(i+1)+": Количество стикеров: 1");
+             }
+             if (product.findElements(By.cssSelector(".sticker")).size() > 1) {
                  System.out.println("Товар №"+(i+1)+": Количество стикеров: "+ product.findElements(By.cssSelector(".sticker")).size());
-
-             } catch (NoSuchElementException e) {
-                 System.out.println("Товар №"+(i+1)+"i Количество стикеров: 0");
+             }
+             else {
+                 System.out.println("Товар №"+(i+1)+": Количество стикеров: 0");
              }
          }
+
      }
 
     @After
